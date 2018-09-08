@@ -10,7 +10,7 @@ import {
   updateUserProjects,
 } from '../navbar/functions.js';
 import { mostRecentlyUpdated } from '../Users/function'
-import './toolbar.css'
+// import './toolbar.css'
 
 const styles = {
   container: {

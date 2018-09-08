@@ -1,12 +1,21 @@
-import Styles from './App.less';
-import { NodeObjectTmpl } from './map';
+import MapView from './map/map.jsx'
 export default class App extends React.Component {
+  state = {
+    maps: [],
+  };
+
+  componentDidMount() {
+    // this.props.record.listen(() => {
+        // console.log(this.props.record.getData());
+      this.setState(this.props.record.getData());
+    // });
+  }
+
   render() {
-    console.log(this.props);
+      if(!this.state.maps.length) return(<div>Loading...</div>)
+    console.log("this.props on line 15", this.state)
     return (
-      <div className={Styles.container}>
-        <div className={Styles.hello} />
-      </div>
+      <MapView project={this.state} record={this.props.record} />
     );
   }
 }

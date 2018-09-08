@@ -1,6 +1,7 @@
 import React from 'react';
 
 function NodeObjectTmpl(props) {
+  console.log("hello at nodeObj tmpl")
   return (
     <div
       className={`${props.pointed ? 'node pointed' : 'node'}`}

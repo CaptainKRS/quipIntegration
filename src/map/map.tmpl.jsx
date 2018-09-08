@@ -4,6 +4,7 @@ import { Node } from './';
 //makeDraggable should be configured in the parent and pass teh whole thing in and then wouldn't need the whole this in here
 
 function MapTmpl(props) {
+
   if (!props.project) return <div>Loading...</div>;
   return !props.maps ? (
     <div>

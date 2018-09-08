@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './node.css';
 import { NodeTmpl } from './';
-import { makeHashCode, makeDraggable } from '../../utilities/';
+import { makeHashCode, makeDraggable } from '../utilities/';
 
 class Node extends Component {
   constructor(props) {
     super(props);
-    this.dragger = React.createRef();
+    // console.log("line 9 on node.jsx", React.createRef())
+    // this.dragger = React.createRef();
     this.state = {
       isEdit: false,
       pos1: 0,

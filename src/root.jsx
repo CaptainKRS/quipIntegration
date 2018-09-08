@@ -1,6 +1,8 @@
 import quip from 'quip';
 import App from './App.jsx';
 
+
+
 class RootRecord extends quip.apps.RootRecord {
   static getProperties = () => ({
     maps: 'array',
@@ -26,6 +28,6 @@ quip.apps.initialize({
         },
       ]);
     }
-    ReactDOM.render(<App map={rootRecord.get('maps')} />, rootNode);
+    ReactDOM.render(<App record={rootRecord} />, rootNode);
   },
 });

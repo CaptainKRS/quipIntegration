@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { MapTmpl } from './index';
-import { db } from '../../exports.js';
+// import { db } from '../../exports.js';
 
 
 export default class MapView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      project: {},
+      project: props.project,
       source: '',
       currentCut: {},
       count: 0,
@@ -16,26 +16,26 @@ export default class MapView extends Component {
 
 
 
-  componentDidMount() {
-    if (this.props.match.params.projectId) {
-      const docRef = db
-        .collection('Projects')
-        .doc(this.props.match.params.projectId);
+  // componentDidMount() {
+  //   if (this.props.match.params.projectId) {
+  //     const docRef = db
+  //       .collection('Projects')
+  //       .doc(this.props.match.params.projectId);
 
-      this.unsubscribe = docRef.onSnapshot(doc => {
-        this.setState({
-          project: doc.data(),
-          count: this.state.count + 1,
-        });
-      });
-    }
-  }
+  //     this.unsubscribe = docRef.onSnapshot(doc => {
+  //       this.setState({
+  //         project: doc.data(),
+  //         count: this.state.count + 1,
+  //       });
+  //     });
+  //   }
+  // }
 
-  componentWillUnmount() {
-    if (this.props.match.params.projectId) {
-      this.unsubscribe();
-    }
-  }
+  // componentWillUnmount() {
+  //   if (this.props.match.params.projectId) {
+  //     this.unsubscribe();
+  //   }
+  // }
 
   // currentCut = node => {
   //   this.setState({
@@ -96,31 +96,31 @@ export default class MapView extends Component {
     //DANGER ZONE, we are about to change the data to be sent
     //this probably should only happen in a file that only does that
     //to make it clear as possible that our database is being changed and sent
-    const projectId = this.props.match.params.projectId;
-    try {
-        let history;
-        if(this.state.project.history.length > 60){
-            history = this.state.project.history.slice(-59)
-        } else {
-            history = this.state.project.history
-        }
+    // const projectId = this.props.match.params.projectId;
+    // try {
+    //     let history;
+    //     if(this.state.project.history.length > 60){
+    //         history = this.state.project.history.slice(-59)
+    //     } else {
+    //         history = this.state.project.history
+    //     }
       let payload = {
         ...this.state.project,
         maps: [mapState],
-        history: [...history, { version: [mapState] }],
-        forward: [],
-        'metadata.lastUpdated': Date.now(),
+        // history: [...history, { version: [mapState] }],
+        // forward: [],
+        // 'metadata.lastUpdated': Date.now(),
       };
 
-      const docRef = await db
-        .collection('Projects')
-        .doc(projectId)
-        .set(payload);
+      const docRef = await this.props.record.set(payload)
+        // .collection('Projects')
+        // .doc(projectId)
+        // .set(payload);
 
-      this.updateTimestamp();
-    } catch (error) {
-      console.error(error);
-    }
+      // this.updateTimestamp();
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   // clearPaste = () => {
@@ -130,8 +130,9 @@ export default class MapView extends Component {
   // };
 
   render() {
+    // console.log(this.props)
     let maps = this.state.project && this.state.project.maps;
-    if (!this.props.user.metadata) return <div>Loading...</div>;
+    // if (!this.props.user.metadata) return <div>Loading...</div>;
     return (
       <MapTmpl
         clearPaste={this.clearPaste}
@@ -141,8 +142,8 @@ export default class MapView extends Component {
         maps={maps}
         checkState={this.checkState}
         count={this.state.count}
-        projectId={this.props.match.params.projectId}
-        user={this.props.user}
+        // projectId={this.props.match.params.projectId}
+        // user={this.props.user}
         currentCut={this.currentCut}
         pasteOption={this.state.currentCut}
       />
