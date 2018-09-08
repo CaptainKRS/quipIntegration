@@ -1,0 +1,14 @@
+.App__container {
+  background-color: gray;
+  overflow: auto;
+  width: 500px;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/*# sourceMappingURL=app.css.map*/
