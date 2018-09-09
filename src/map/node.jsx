@@ -6,7 +6,7 @@ import { makeHashCode, makeDraggable } from '../utilities/';
 class Node extends Component {
   constructor(props) {
     super(props);
-    // console.log("line 9 on node.jsx", React.createRef())
+    console.log("line 9 on node.jsx", React.version)
     // this.dragger = React.createRef();
     this.state = {
       isEdit: false,

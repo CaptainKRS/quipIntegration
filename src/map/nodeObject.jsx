@@ -5,7 +5,7 @@ import './node.css';
 class NodeObject extends Component {
   constructor(props) {
     super(props);
-    this.textEdit = React.createRef();
+    // this.textEdit = React.createRef();
     this.state = {
       isEdit: false,
     };
